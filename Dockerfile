@@ -33,7 +33,7 @@ RUN mkdir -p /usr/share/man/man1
 RUN apt-get install perl --no-install-recommends && \
     apt-get install tar && \
     mkdir /tmp/install-tl-unx && \
-    curl -L ftp://tug.org/historic/systems/texlive/2022/install-tl-unx.tar.gz | \
+    curl -L ftp://tug.org/historic/systems/texlive/2023/install-tl-unx.tar.gz | \
     tar -xz -C /tmp/install-tl-unx --strip-components=1 && \
     printf "%s\n" \
     "selected_scheme scheme-basic" \
