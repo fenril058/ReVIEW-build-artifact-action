@@ -30,8 +30,8 @@ RUN locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
 RUN mkdir -p /usr/share/man/man1
 
 # TexLive
-RUN apt-get install perl fontconfig-dev libfreetype-dev --no-install-recommends && \
-    apt-get install xz tar wget && \
+RUN apt-get install perl --no-install-recommends && \
+    apt-get install xz tar && \
     mkdir /tmp/install-tl-unx && \
     curl -L ftp://tug.org/historic/systems/texlive/2022/install-tl-unx.tar.gz | \
     tar -xz -C /tmp/install-tl-unx --strip-components=1 && \
