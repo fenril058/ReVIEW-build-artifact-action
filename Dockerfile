@@ -18,10 +18,10 @@ ENV LANG en_US.UTF-8
 ENV DEBIAN_FRONTEND noninteractive
 
 # setup
-RUN apt update && \
-    apt install -y --no-install-recommends \
-      locales git-core curl ca-certificates && \
-    apt clean && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    locales git-core curl ca-certificates && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen
 RUN locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
@@ -30,23 +30,23 @@ RUN locale-gen en_US.UTF-8 && update-locale en_US.UTF-8
 RUN mkdir -p /usr/share/man/man1
 
 # TexLive
-RUN apt install perl fontconfig-dev libfreetype-dev --no-install-recommends && \
-    apt install xz tar wget && \
+RUN apt-get install perl fontconfig-dev libfreetype-dev --no-install-recommends && \
+    apt-get install xz tar wget && \
     mkdir /tmp/install-tl-unx && \
     curl -L ftp://tug.org/historic/systems/texlive/2022/install-tl-unx.tar.gz | \
-      tar -xz -C /tmp/install-tl-unx --strip-components=1 && \
+    tar -xz -C /tmp/install-tl-unx --strip-components=1 && \
     printf "%s\n" \
-      "selected_scheme scheme-basic" \
-      "tlpdbopt_install_docfiles 0" \
-      "tlpdbopt_install_srcfiles 0" \
-      > /tmp/install-tl-unx/texlive.profile && \
+    "selected_scheme scheme-basic" \
+    "tlpdbopt_install_docfiles 0" \
+    "tlpdbopt_install_srcfiles 0" \
+    > /tmp/install-tl-unx/texlive.profile && \
     /tmp/install-tl-unx/install-tl \
-      --profile=/tmp/install-tl-unx/texlive.profile && \
+    --profile=/tmp/install-tl-unx/texlive.profile && \
     tlmgr install \
-      collection-latexextra \
-      collection-fontsrecommended \
-      collection-langjapanese \
-      latexmk && \
+    collection-latexextra \
+    collection-fontsrecommended \
+    collection-langjapanese \
+    latexmk && \
     rm -fr /tmp/install-tl-unx && \
 
 ENV PATH /usr/local/texlive/2022/bin/x86_64-linuxmusl:$PATH
@@ -61,14 +61,14 @@ RUN adduser -D -u ${UID} latex
 USER ${UID}
 
 # install Re:VIEW environment
-RUN apt update && \
-    apt install -y --no-install-recommends \
-      zip ruby-zip \
-      ruby-nokogiri mecab ruby-mecab mecab-ipadic-utf8 poppler-data \
-      graphviz gnuplot python3-blockdiag plantuml \
-      ruby-dev build-essential \
-      mecab-jumandic- mecab-jumandic-utf8- \
-      poppler-utils && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    zip ruby-zip \
+    ruby-nokogiri mecab ruby-mecab mecab-ipadic-utf8 poppler-data \
+    graphviz gnuplot python3-blockdiag plantuml \
+    ruby-dev build-essential \
+    mecab-jumandic- mecab-jumandic-utf8- \
+    poppler-utils && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 ## if you want to use ipa font instead of haranoaji font, use this settings
@@ -82,16 +82,16 @@ RUN gem install bundler rake -N && \
 #   gem install review-peg -v "$REVIEW_PEG_VERSION" -N
 
 # install node.js environment
-RUN apt update && \
-    apt install -y --no-install-recommends \
-      gnupg && \
-    apt clean && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    gnupg && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 RUN curl -sL https://deb.nodesource.com/setup_${NODEJS_VERSION}.x | bash -
-RUN apt update && \
-    apt install -y --no-install-recommends \
-      nodejs && \
-    apt clean && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    nodejs && \
+    apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     npm install -g yarn
 
