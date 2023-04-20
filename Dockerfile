@@ -1,7 +1,7 @@
 # https://help.github.com/en/actions/building-actions/creating-a-docker-container-action
 
 # Container image that runs your code
-FROM vvakame/review:5.7
+FROM fenril058/review
 
 # Copies your code file from your action repository to the filesystem path `/` of the container
 COPY entrypoint.sh /entrypoint.sh
