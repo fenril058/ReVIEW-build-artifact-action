@@ -49,7 +49,7 @@ RUN apt-get install perl --no-install-recommends && \
     latexmk && \
     rm -fr /tmp/install-tl-unx && \
 
-ENV PATH /usr/local/texlive/2022/bin/x86_64-linuxmusl:$PATH
+ENV PATH /usr/local/texlive/2023/bin/x86_64-linuxmusl:$PATH
 
 # for additional modules
 ARG TEXMFLOCAL=/usr/local/texlive/texmf-local/tex/latex
