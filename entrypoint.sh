@@ -7,5 +7,5 @@
 # TODO Enable env paramaters that only INPUT_TARGET_DIR works well.
 
 echo "Run Initialization and build step"
-cd $INPUT_TARGET_DIR && bundle install && npm install && npm run pdf
+cd $INPUT_TARGET_DIR && bundle install && bundle exec rake pdf
 echo "Finish build step"
